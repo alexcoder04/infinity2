@@ -1,0 +1,2 @@
+# this file belongs in $HOME/.zshenv
+source "$HOME/.config/sh/env.sh"
