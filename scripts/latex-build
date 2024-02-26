@@ -16,17 +16,16 @@ basename="${1##*/}"
 
 OUTPUT_DIR="${TMPDIR:-/tmp}/latex-build-$(echo "$basename" | md5sum | cut -d " " -f1)"
 LATEX_COMPILER="lualatex"
-#PDF_READER="zathura"
-PDF_READER="evince"
-WC_STOP_SEQ="^\\\\appendix\$"
+PDF_READER="zathura"
+#PDF_READER="evince"
 
 [ -d "$OUTPUT_DIR" ] || mkdir "$OUTPUT_DIR"
 
 # word count
 if grep -qE '^\s*[^%]*\\wordcount' "$1"; then
-  wordcount="$( ( sed -n "1,/$WC_STOP_SEQ/{/$WC_STOP_SEQ/!p;}" "$1"; echo "\\end{document}" ) | texcount -brief - | cut -d+ -f1 )"
+  wordcount="$( texcount -brief "$1" | cut -d+ -f1 )"
   #wordcount="$(pandoc -f latex -t plain "$1" | sed -E 's/\[.{1,3}\]//g' | wc -w)"
-  sed -E "s/^(\\s*[^%]*)\\\\wordcount/\\1\\\\textit{$wordcount words}/g" "$1" > "$OUTPUT_DIR/$basename" || die "Error copying '$1' to temp dir"
+  sed -E "s/^(\\s*[^%]*)\\\\wordcount/\\1$wordcount/g" "$1" > "$OUTPUT_DIR/$basename" || die "Error copying '$1' to temp dir"
 else
   cp "$1" "$OUTPUT_DIR/$basename" || die "Error copying '$1' to temp dir"
 fi
