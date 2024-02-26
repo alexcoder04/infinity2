@@ -1,1 +1,3 @@
 .local/bin/latex-build scripts/
+.config/lf/lfrc lf/
+.config/nvim/ nvim
