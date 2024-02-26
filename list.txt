@@ -1,7 +1,7 @@
-.local/bin/latex-build scripts/
 .config/lf/lfrc lf/
 .config/nvim/ nvim
-.zshenv zsh/zshenv
+.config/sh/ sh
 .config/zsh/.zshrc zsh/zshrc
 .config/zsh/cursor-prompt.zsh zsh/
-.config/sh/env.sh sh/
+.local/bin/latex-build scripts/
+.zshenv zsh/zshenv

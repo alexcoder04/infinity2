@@ -16,11 +16,8 @@
 #source "$ZDOTDIR/abbreviations.zsh"
 #source "$ZDOTDIR/aliases.zsh"
 #source "$ZDOTDIR/bookmarks.zsh"
-#source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/cursor-prompt.zsh"
-
-#[ -f "$XDG_CONFIG_HOME/sh/colors.sh" ] && source "$XDG_CONFIG_HOME/sh/colors.sh"
-#[ -f "$XDG_CONFIG_HOME/sh/machine.sh" ] && source "$XDG_CONFIG_HOME/sh/machine.sh"
+source "$XDG_CONFIG_HOME/sh/colors.sh"
 # }}}
 
 # history configuration {{{
@@ -56,8 +53,19 @@ autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 bindkey -M vicmd '^e' edit-command-line
 
-#bindkey -s '^f' 'lfcd\n' # select folder to open with lf
-#bindkey -s '^o' 'fzfcd\n' # select folder to open with fzf
+# lfcd {{{
+lfcd(){
+  tmp="${TMPDIR:-/tmp}/.lfcd"
+  lf -last-dir-path="$tmp" "$@"
+  [ -f "$tmp" ] || return
+  dir="$(cat "$tmp")"
+  rm -f "$tmp"
+  [ -d "$dir" ] && cd "$dir"
+  unset tmp
+  unset dir
+}
+# }}}
+bindkey -s '^o' 'lfcd\n' # select folder to open with lf
 bindkey -s '^b' ' &>/dev/null & disown' # run command in the background
 # }}}
 
@@ -78,7 +86,4 @@ unsetopt beep extendedglob notify
 setopt interactivecomments
 ZSH_HIGHLIGHT_STYLES[comment]="fg=white,dim"
 # }}}
-
-# startup stuff if not inside lf or vscode
-#[ -z "$LF_LEVEL" ] && [ -z "$VSCODE_INJECTION" ] && source "$ZDOTDIR/startup.zsh"
 
