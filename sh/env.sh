@@ -44,9 +44,10 @@ export XRESOURCES="$XDG_CONFIG_HOME/X11/Xresources"
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 # }}}
 
-# set terminal emulator
+# set default programs
 #export TERMINAL="launch" # terminal emulator wrapper
-export TERMINAL=kgx # new gnome console
+export TERMINAL="kgx" # new gnome console
+export EDITOR="nvim"
 
 # PATH parts
 PERL_PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
@@ -58,4 +59,5 @@ export PATH="$MACHINE_PATH:$HOME/.local/bin:$PMS_PATH:$BASE_PATH"
 
 # different settings
 export GOPROXY="direct" # no fancy google cache for go
+export MOZ_ENABLE_WAYLAND=1 # native wayland for firefox
 

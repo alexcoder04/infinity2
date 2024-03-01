@@ -13,9 +13,8 @@
 [[ -o interactive ]] || exit
 
 # import other files {{{
-#source "$ZDOTDIR/abbreviations.zsh"
-#source "$ZDOTDIR/aliases.zsh"
-#source "$ZDOTDIR/bookmarks.zsh"
+source "$ZDOTDIR/abbreviations.zsh"
+source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/cursor-prompt.zsh"
 source "$XDG_CONFIG_HOME/sh/colors.sh"
 # }}}

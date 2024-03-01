@@ -88,3 +88,6 @@ setopt prompt_subst
 PROMPT='%F{blue}[%f %B%F{green}%n%b%F{red}@%F{yellow}%m%f %F{blue}]%f in %F{cyan}$(_prompt_check_pwd)%f $(_prompt_check_git)
 $(_prompt_check_chroot)$(_prompt_check_lf)$(_prompt_last_command_duration)%1(j.%F{magenta} %j%f.) ${vim_mode} '
 
+# set cursor to vertical line by default
+echo -ne '\e[5 q'
+
