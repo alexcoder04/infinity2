@@ -1,4 +1,4 @@
-.config/lf/lfrc lf/
+.config/lf/ lf
 .config/nvim/ nvim
 .config/sh/ sh
 .config/zsh/.zshrc zsh/zshrc

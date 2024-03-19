@@ -12,8 +12,8 @@
 # settings {{{
 set dircounts
 set drawbox 
-#set preview 
-#set icons 
+set preview 
+set icons 
 set ignorecase 
 set info size
 set incsearch
@@ -32,7 +32,7 @@ set truncatechar "…"
 # }}}
 
 # previews {{{
-#set previewer ~/.config/lf/previewer.sh
+set previewer ~/.config/lf/preview.sh
 #set cleaner ~/.config/lf/clear.sh
 # }}}
 
