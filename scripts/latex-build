@@ -14,7 +14,7 @@
 [ -z "$1" ] && die_notify "not given an input file"
 basename="${1##*/}"
 
-OUTPUT_DIR="${TMPDIR:-/tmp}/latex-build-$(echo "$basename" | md5sum | cut -d " " -f1)"
+OUTPUT_DIR="${TMPDIR:-/tmp}/latex-build-$(echo "$(readlink -f "$1")" | md5sum | cut -d " " -f1)"
 LATEX_COMPILER="lualatex"
 PDF_READER="zathura"
 #PDF_READER="evince"

@@ -1,0 +1,22 @@
+#!/bin/bash
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2024 alexcoder04 <alexcoder04@protonmail.com>
+# 
+# add black padding to image to make it square
+# (for posting on instagram)
+#
+# usage: padsi input.jpeg output.jpeg
+
+dimensions="$(identify -format "%wx%h" "$1")"
+width="$(echo $dimensions | cut -d'x' -f1)"
+height="$(echo $dimensions | cut -d'x' -f2)"
+
+size="$(($width > $height ? $width : $height))"
+
+convert "$1" -background black -gravity center -extent "${size}x${size}" "$2"
+

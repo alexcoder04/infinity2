@@ -5,7 +5,7 @@
 # | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
 #  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
 # 
-# Copyright (c) 2024 alexcoder04 <alexcoder04@protonmail.com>
+# Copyright (c) 2021-2022, 2024 alexcoder04 <alexcoder04@protonmail.com>
 # 
 # file preview scipt for lf
 
@@ -31,7 +31,7 @@ case "$(file -Lb --mime-type "$file")" in
   audio/*) # audio
     echo "\033[36mAudio file\033[0m"
     ;;
-  text/* | application/json | */xml) # text files
+  text/* | application/json | application/javascript | */xml) # text files
     cat "$file"
     ;;
   message/rfc822) # emails

@@ -3,5 +3,6 @@
 .config/sh/ sh
 .config/zsh/.zshrc zsh/zshrc
 .config/zsh/cursor-prompt.zsh zsh/
+.local/bin/padsi scripts/
 .local/bin/latex-build scripts/
 .zshenv zsh/zshenv
