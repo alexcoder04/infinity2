@@ -1,0 +1,54 @@
+#!/bin/sh
+#        _                        _            ___  _  _   
+#   __ _| | _____  _____ ___   __| | ___ _ __ / _ \| || |  
+#  / _` | |/ _ \ \/ / __/ _ \ / _` |/ _ \ '__| | | | || |_ 
+# | (_| | |  __/>  < (_| (_) | (_| |  __/ |  | |_| |__   _|
+#  \__,_|_|\___/_/\_\___\___/ \__,_|\___|_|   \___/   |_|  
+# 
+# Copyright (c) 2024 alexcoder04 <alexcoder04@protonmail.com>
+# 
+# work with pdfs in the command line
+
+. libsh || exit 1
+
+help(){
+    cat <<EOF
+pdftool - working with pdfs in the command line
+
+available commands:
+
+compress input.pdf [output.pdf]
+cat output.pdf input1.pdf [input...]
+rescale input.pdf [output.pdf] [size]
+EOF
+    exit 1
+}
+
+compress(){
+    [ -z "$1" ] && die "Specify file names"
+    [ -z "$2" ] && 2="${1%.*}-compressed.pdf"
+    gs -sDEVICE=pdfwrite -q -dPDFSETTINGS=/ebook -o "$2" "$1"
+}
+
+concat(){
+    [ -z "$1" ] && die "Specify file names"
+    [ -z "$2" ] && die "Specify file names"
+    output="$1"; shift
+    gs -sDEVICE=pdfwrite -q -o "$output" "$@"
+}
+
+rescale(){
+    [ -z "$1" ] && die "Specify file names"
+    [ -z "$2" ] && 2="${1%.*}-rescaled.pdf"
+    [ -z "$3" ] && 3="a4"
+    gs -sDEVICE=pdfwrite -q -sPAPERSIZE="$3" -dFIXEDMEDIA -dPDFFitPage -dCompatibilityLevel=1.4 -o "$2" "$1"
+}
+
+cmd="$1"; shift
+case "$cmd" in
+    compress) compress "$@" ;;
+    concat|cat) concat "$@" ;;
+    rescale|resize|scale) rescale "$@" ;;
+    *) help ;;
+esac
+
