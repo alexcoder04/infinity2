@@ -11,14 +11,17 @@
 
 . libsh || exit 1
 
+TEMPFILE="${TMPDIR:-/tmp}/.pdftool-tempfile.pdf"
+
 help(){
     cat <<EOF
 pdftool - working with pdfs in the command line
 
 available commands:
 
-compress input.pdf [output.pdf]
 cat output.pdf input1.pdf [input...]
+compress input.pdf [output.pdf]
+normalize input.pdf
 rescale input.pdf [output.pdf] [size]
 EOF
     exit 1
@@ -44,10 +47,18 @@ rescale(){
     gs -sDEVICE=pdfwrite -q -sPAPERSIZE="$3" -dFIXEDMEDIA -dPDFFitPage -dCompatibilityLevel=1.4 -o "$2" "$1"
 }
 
+normalize(){
+    [ -z "$1" ] && die "Specify file names"
+    rescale "$1" "$TEMPFILE" "a4"
+    rm "$1"
+    compress "$TEMPFILE" "$1"
+}
+
 cmd="$1"; shift
 case "$cmd" in
-    compress) compress "$@" ;;
     concat|cat) concat "$@" ;;
+    compress) compress "$@" ;;
+    normalize) normalize "$@" ;;
     rescale|resize|scale) rescale "$@" ;;
     *) help ;;
 esac
