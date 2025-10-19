@@ -45,8 +45,7 @@ export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java"
 # }}}
 
 # set default programs
-#export TERMINAL="launch" # terminal emulator wrapper
-export TERMINAL="kgx" # new gnome console
+export TERMINAL="footclient"
 export EDITOR="nvim"
 
 # PATH parts
