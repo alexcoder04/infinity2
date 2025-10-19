@@ -4,6 +4,8 @@
 .config/sh/ sh
 .config/zsh/.zshrc zsh/zshrc
 .config/zsh/cursor-prompt.zsh zsh/
+.config/zsh/aliases.zsh zsh/
+.config/zsh/abbreviations.zsh zsh/
 .local/bin/libsh scripts/
 .local/bin/padsi scripts/
 .local/bin/pdftool scripts/
