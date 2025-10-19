@@ -81,7 +81,8 @@ class _PS1:
         return p
 
     def _prompt(self):
-        return f"[ \033[36m{self._line_number}\033[0m ] [ \033[33m{self._path()}\033[0m ] \033[1;32m🐍 \033[0m"
+        #return f"[ \033[36m{self._line_number}\033[0m ] [ \033[33m{self._path()}\033[0m ] \033[1;32m🐍 \033[0m"
+        return f"[ \033[33m{self._path()}\033[0m ] \033[1;32m🐍 \033[0m"
 
     def __str__(self):
         self._line_number += 1

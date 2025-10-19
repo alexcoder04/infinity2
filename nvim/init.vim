@@ -105,6 +105,9 @@ source $XDG_CONFIG_HOME/nvim/statusline.vim
 " put current line in the middle if typing
 autocmd InsertEnter * norm zz
 
+" svelte is html
+autocmd BufRead,BufNewFile *.svelte set filetype=html
+
 " show syntax highlight group
 function! Syn()
   for id in synstack(line("."), col("."))

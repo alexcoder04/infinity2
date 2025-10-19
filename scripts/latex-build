@@ -23,7 +23,7 @@ PDF_READER="zathura"
 
 # word count
 if grep -qE '^\s*[^%]*\\wordcount' "$1"; then
-  wordcount="$( texcount -brief "$1" | cut -d+ -f1 )"
+  wordcount="$(texcount -brief "$1" | cut -d+ -f1 )"
   #wordcount="$(pandoc -f latex -t plain "$1" | sed -E 's/\[.{1,3}\]//g' | wc -w)"
   sed -E "s/^(\\s*[^%]*)\\\\wordcount/\\1$wordcount/g" "$1" > "$OUTPUT_DIR/$basename" || die "Error copying '$1' to temp dir"
 else
