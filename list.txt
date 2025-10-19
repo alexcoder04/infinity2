@@ -1,6 +1,7 @@
 .config/lf/ lf
 .config/nvim/ nvim
 .config/foot/foot.ini misc/foot.ini
+.config/htop/htoprc misc/htoprc
 .config/pythonrc misc/pythonrc
 .config/sh/ sh
 .config/zsh/.zshrc zsh/zshrc
